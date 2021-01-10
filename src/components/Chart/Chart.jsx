@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { fetchDailyData } from '../../api'
 import {Line, Bar } from 'react-chartjs-2'
 import styles from './Chart.module.css'
-import { DialogTitle } from '@material-ui/core'
+
 
 // Chart component takes the fetched data as props 
 const Chart = ({data: { confirmed, recovered, deaths }, country}) => {
@@ -10,7 +10,8 @@ const Chart = ({data: { confirmed, recovered, deaths }, country}) => {
     // use effect will call fetchDailyData to fetch the data from api and put the results into a lineChart, bar Chart variables
     useEffect(() => {
         const fetchAPI = async () => {
-            setDailyData(await fetchDailyData())
+            const initialData = await fetchDailyData()
+            setDailyData(initialData)
         }
         fetchAPI()
     }, [])
